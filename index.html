@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ram Cirigiri — Engineering Manager, AI Systems</title>
+<meta name="description" content="Engineering Manager, AI Systems and founder building production, compliant AI at enterprise scale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#100F0D;
+    --surface:#181715;
+    --surface-2:#1F1E1A;
+    --line:#2C2A25;
+    --ink:#ECE8DF;
+    --muted:#938C7E;
+    --faint:#6A645A;
+    --accent:#E0A24A;
+    --accent-soft:rgba(224,162,74,0.12);
+    --serif:'Fraunces',Georgia,serif;
+    --sans:'Hanken Grotesk',system-ui,sans-serif;
+    --mono:'JetBrains Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+    overflow-x:hidden;
+  }
+  /* atmospheric glow + grain */
+  body::before{
+    content:"";position:fixed;top:-30%;left:50%;transform:translateX(-50%);
+    width:900px;height:900px;border-radius:50%;
+    background:radial-gradient(circle,rgba(224,162,74,0.10),transparent 60%);
+    pointer-events:none;z-index:0;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:88px 28px 96px}
+
+  /* staggered entrance */
+  .reveal{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes rise{to{opacity:1;transform:translateY(0)}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.28s}
+  .d4{animation-delay:.42s}.d5{animation-delay:.56s}.d6{animation-delay:.70s}.d7{animation-delay:.84s}
+
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.7rem,8vw,3.9rem);line-height:1.02;letter-spacing:-.01em}
+  .role{font-family:var(--sans);font-weight:500;font-size:1.06rem;color:var(--ink);margin-top:16px}
+  .role span{color:var(--muted)}
+  .tagline{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.34rem;line-height:1.45;color:var(--ink);margin-top:26px;max-width:34ch}
+  .status{font-family:var(--mono);font-size:.82rem;color:var(--muted);margin-top:20px;display:flex;align-items:center;gap:10px;letter-spacing:.02em}
+  .status .dot{width:8px;height:8px;flex:none;border-radius:50%;background:#5BBE7B;animation:pulse 2.2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(91,190,123,.5)}70%{box-shadow:0 0 0 7px rgba(91,190,123,0)}100%{box-shadow:0 0 0 0 rgba(91,190,123,0)}}
+
+  h2{font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin:64px 0 22px;display:flex;align-items:center;gap:14px}
+  h2::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  /* selected work links */
+  .links{display:flex;flex-direction:column;gap:12px}
+  a.card{
+    display:flex;align-items:center;gap:18px;text-decoration:none;color:var(--ink);
+    background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px;transition:all .25s ease;
+  }
+  a.card:hover{border-color:var(--accent);background:var(--surface-2);transform:translateX(4px)}
+  a.card .ic{width:38px;height:38px;flex:none;border-radius:10px;background:var(--accent-soft);display:grid;place-items:center;color:var(--accent)}
+  a.card .ic svg{width:19px;height:19px;stroke:currentColor;stroke-width:1.7;fill:none}
+  a.card .t{font-weight:600;font-size:1rem}
+  a.card .s{font-size:.86rem;color:var(--muted)}
+  a.card .arrow{margin-left:auto;color:var(--faint);transition:.25s}
+  a.card:hover .arrow{color:var(--accent);transform:translateX(3px)}
+
+  /* product blocks */
+  .prod{border-left:2px solid var(--line);padding:2px 0 2px 22px;margin-bottom:26px}
+  .prod h3{font-family:var(--serif);font-weight:500;font-size:1.22rem;margin-bottom:6px}
+  .prod p{color:var(--muted);font-size:.97rem}
+  .prod p b{color:var(--ink);font-weight:600}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:8px}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .stat .n{font-family:var(--serif);font-size:1.7rem;font-weight:500;color:var(--accent);line-height:1.1}
+  .stat .l{font-size:.83rem;color:var(--muted);margin-top:6px}
+
+  ul.notes{list-style:none;margin-top:8px}
+  ul.notes li{position:relative;padding-left:22px;color:var(--muted);font-size:.96rem;margin-bottom:11px}
+  ul.notes li::before{content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  ul.notes li b{color:var(--ink);font-weight:600}
+
+  .prose{color:var(--muted);font-size:.99rem}
+  .prose b{color:var(--ink);font-weight:600}
+
+  .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:6px}
+  .chip{font-family:var(--mono);font-size:.78rem;color:var(--muted);background:var(--surface);border:1px solid var(--line);padding:6px 11px;border-radius:8px}
+
+  .foot{margin-top:72px;padding-top:26px;border-top:1px solid var(--line);font-family:var(--mono);font-size:.76rem;color:var(--faint);letter-spacing:.04em}
+  .patent{font-family:var(--mono);font-size:.8rem;color:var(--accent);margin-top:14px;letter-spacing:.02em}
+
+  @media (max-width:520px){.stats{grid-template-columns:1fr}.wrap{padding:60px 22px 72px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <p class="eyebrow reveal d1">Engineering Manager · AI Systems</p>
+  <h1 class="reveal d1">Ram Cirigiri</h1>
+  <p class="role reveal d2">Founder, Cognitive Commerce Labs <span>· Austin, TX</span></p>
+  <p class="tagline reveal d2">Production, compliant AI at enterprise scale — and 0&rarr;1 as a founder.</p>
+  <p class="status reveal d2"><span class="dot"></span>In production with 5 restaurants &middot; 2 grocery pilots &middot; patent-pending</p>
+
+  <h2 class="reveal d3">Selected Work</h2>
+  <div class="links reveal d3">
+    <a class="card" href="https://linkedin.com/in/rciri">
+      <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10v7M8 7v.5M12 17v-4a2 2 0 0 1 4 0v4"/></svg></span>
+      <span><span class="t">LinkedIn</span><br><span class="s">linkedin.com/in/rciri</span></span>
+      <span class="arrow">&rarr;</span>
+    </a>
+    <a class="card" href="mailto:ram.cirigiri@gmail.com">
+      <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+      <span><span class="t">Email</span><br><span class="s">ram.cirigiri@gmail.com</span></span>
+      <span class="arrow">&rarr;</span>
+    </a>
+  </div>
+
+  <h2 class="reveal d4">What I'm building</h2>
+  <div class="reveal d4">
+    <div class="prod">
+      <h3>Cogo — Ordering</h3>
+      <p>Restaurants take orders across <b>voice, chat, and phone</b>; most complete in a single exchange. A patent-pending dual-engine speech-arbitration layer keeps accuracy high on accented and multilingual speech. <b>Live in production across 5 restaurants.</b></p>
+    </div>
+    <div class="prod">
+      <h3>Cogo — Product Discovery</h3>
+      <p>Voice and chat search over grocery catalogs, architected for <b>2M+ SKUs</b>, with hybrid retrieval and an ML entity-resolution flywheel reaching <b>95%+ automated resolution</b>. <b>In pilot with 2 grocery stores.</b></p>
+    </div>
+  </div>
+
+  <h2 class="reveal d5">By the numbers</h2>
+  <div class="stats reveal d5">
+    <div class="stat"><div class="n">10,000</div><div class="l">store scale — what the architecture is designed to support</div></div>
+    <div class="stat"><div class="n">85%</div><div class="l">Precision@10 with hybrid BM25 + vector retrieval</div></div>
+    <div class="stat"><div class="n">800&rarr;150ms</div><div class="l">P95 latency, via async execution &amp; query optimization</div></div>
+    <div class="stat"><div class="n">630</div><div class="l">CI-gated regression tests guarding every release</div></div>
+  </div>
+  <ul class="notes reveal d5" style="margin-top:18px">
+    <li>18-node <b>LangGraph</b> agent with 32 tools; tiered model routing controls cost without losing quality.</li>
+    <li>Built for production: provider failover, <b>PII redaction + audit logging on every model call</b>, and full p95/error-rate observability.</li>
+  </ul>
+  <p class="patent reveal d5">Patent-pending · USPTO #64/026,827 — domain-aware multilingual speech-recognition arbitration</p>
+
+  <h2 class="reveal d6">Before Cogo</h2>
+  <p class="prose reveal d6">Fifteen-plus years leading engineering teams (up to 8) at Fortune 25/100 companies — <b>General Motors</b> (HIPAA-compliant claims AI platform), <b>American Express</b> (payments at scale), and <b>Publix</b> (real-time event-driven platform across 1,200+ stores). <b>MBA</b>, University of Florida · <b>MS Computer Science</b>, Florida Tech.</p>
+
+  <h2 class="reveal d7">Tech I work with</h2>
+  <div class="chips reveal d7">
+    <span class="chip">LangGraph</span><span class="chip">OpenAI &amp; Claude APIs</span><span class="chip">RAG</span>
+    <span class="chip">BM25 + Vector Search</span><span class="chip">Deepgram</span><span class="chip">Azure</span>
+    <span class="chip">Cosmos DB</span><span class="chip">Redis</span><span class="chip">Kafka</span>
+    <span class="chip">FastAPI</span><span class="chip">Kubernetes</span><span class="chip">Terraform</span>
+  </div>
+
+  <p class="foot reveal d7">© 2026 Ram Cirigiri · Austin, TX</p>
+
+</main>
+</body>
+</html>
